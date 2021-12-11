@@ -1,12 +1,12 @@
 const { CharacterModel } = require('../models');
-// const validateJWT = require('../middleware/validate-jwt')
+const validateJWT = require('../middleware/validate-jwt')
 const router = require("express").Router();
 
 router.get('/practice', (req, res) => {
     res.send('Hey! This is a practice route!')
 })
 
-router.post('/', /*validateJWT,*/ async (req, res) => {
+router.post('/', validateJWT, async (req, res) => {
     const {
         race,
         chrClass,
@@ -70,7 +70,7 @@ router.post('/', /*validateJWT,*/ async (req, res) => {
     }
 });
 
-router.put('/:id', /*validateJWT,*/ async (req, res) => {
+router.put('/:id', validateJWT, async (req, res) => {
     const {
         race,
         chrClass,
@@ -172,7 +172,7 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.delete('/:id', /*validateJWT,*/ async (req, res) => {
+router.delete('/:id', validateJWT, async (req, res) => {
     const owner_id = req.body.user.id;
     const { id } = req.params;
     try {
