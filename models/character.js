@@ -97,6 +97,10 @@ const Character = db.define("character", {
     characterBackstory: {// end character
         type: DataTypes.STRING,
         allowNull: true,
+    },
+    owner_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
     }
 })
 
