@@ -1,12 +1,6 @@
-"hello world"
+const CharacterModel = require('./character');
 
-
-kalhso;lkdvh;ljah
-
-
-asdlkjfhj;olashjd
-
-akldhklajshdkfghkjah
-
-"Dean's hello world"
+module.exports = {
+    CharacterModel
+};
 
