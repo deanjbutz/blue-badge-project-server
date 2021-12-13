@@ -1,19 +1,20 @@
 const { CharacterModel } = require('../models');
-// const validateJWT = require('../middleware/validate-jwt')
+const validateJWT = require('../middleware/validate-jwt')
 const router = require("express").Router();
 
 router.get('/practice', (req, res) => {
     res.send('Hey! This is a practice route!')
 })
 
-router.post('/', /*validateJWT,*/ async (req, res) => {
+router.post('/', validateJWT, async (req, res) => {
     const {
         race,
         chrClass,
         background,
         level,
-        stength,
+        strength,
         dexterity,
+        constitution,
         intelligence,
         wisdom,
         charisma,
@@ -34,14 +35,15 @@ router.post('/', /*validateJWT,*/ async (req, res) => {
         characterBackstory,
         owner_id
     } = req.body; //! might need something else here
-    // const { id } = req.user; //! might need to adjust this
+    const { id } = req.user; //! might need to adjust this
     const characterEntry = {
         race,
         chrClass,
         background,
         level,
-        stength,
+        strength,
         dexterity,
+        constitution,
         intelligence,
         wisdom,
         charisma,
@@ -70,14 +72,15 @@ router.post('/', /*validateJWT,*/ async (req, res) => {
     }
 });
 
-router.put('/:id', /*validateJWT,*/ async (req, res) => {
+router.put('/:id', validateJWT, async (req, res) => {
     const {
         race,
         chrClass,
         background,
         level,
-        stength,
+        strength,
         dexterity,
+        constitution,
         intelligence,
         wisdom,
         charisma,
@@ -113,8 +116,9 @@ router.put('/:id', /*validateJWT,*/ async (req, res) => {
         chrClass,
         background,
         level,
-        stength,
+        strength,
         dexterity,
+        constitution,
         intelligence,
         wisdom,
         charisma,
@@ -172,7 +176,7 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.delete('/:id', /*validateJWT,*/ async (req, res) => {
+router.delete('/:id', validateJWT, async (req, res) => {
     const owner_id = req.body.user.id;
     const { id } = req.params;
     try {
