@@ -18,11 +18,15 @@ const Character = db.define("character", {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    stength: { //ability scores
+    strength: { //ability scores
         type: DataTypes.INTEGER,
         allowNull: false,
     },
     dexterity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    constitution: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },

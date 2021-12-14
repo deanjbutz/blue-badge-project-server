@@ -10,8 +10,8 @@ router.post("/register", async (req, res) => {
 
     try {
         const newUser = await UserModel.create({
-            email: req.body.user.email,
-            password: bcrypt.hashSync(req.body.user.password, 10),
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password, 10),
         })
 
         const token = jwt.sign({
@@ -67,10 +67,14 @@ router.post("/login", async (req, res) => {
                     message: "Incorrect email or password"
                 })
             }
+        } else {
+            res.status(401).json({
+                message: "Incorrect email or password"
+            })
         }
     } catch (error) {
         res.status(500).json({
-            message: err
+            error: `${err}`
         })
     }
 });
