@@ -35,7 +35,7 @@ router.post('/', validateJWT, async (req, res) => {
         characterBackstory,
         owner_id
     } = req.body; //! might need something else here
-    // const { id } = req.user; //! might need to adjust this
+    const { id } = req.user; //! might need to adjust this
     const characterEntry = {
         race,
         chrClass,
