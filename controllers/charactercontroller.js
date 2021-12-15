@@ -145,7 +145,7 @@ router.put('/:id', validateJWT, async (req, res) => {
         if (update > 0) {
             res.status(202).json({ message: `Character update successful!`, character: updatedCharacter})
         } else {
-            res.status(500).json({ message: `Character update failed`})
+            res.status(500).json({ message: `Character update failed. You may not be the owner of this character.`})
         }
 
     } catch (err) {
@@ -190,7 +190,7 @@ router.delete('/:id', validateJWT, async (req, res) => {
         if (result) {
             res.status(200).json({ message: 'Character Deleted'});
         } else {
-            res.status(400).json({ message: "character not found"})
+            res.status(400).json({ message: "Failed to delete character. You may not be the owner of this character."})
         }
     } catch (err) {
         res.status(500).json({ message: `Failed to delete character. Error: ${err}`})
