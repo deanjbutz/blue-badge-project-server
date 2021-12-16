@@ -66,7 +66,7 @@ router.post('/', validateJWT, async (req, res) => {
     };
     try {
         const newCharacter = await CharacterModel.create(characterEntry);
-        res.status(201).json(newCharacter);
+        res.status(201).json({ message: 'Character successfully created!' });
     } catch (err) {
         res.status(500).json({ message: `Failed to create character. Error: ${err}`})
     }

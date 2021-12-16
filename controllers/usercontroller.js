@@ -24,7 +24,7 @@ router.post("/register", async (req, res) => {
             })
 
         res.status(201).json({
-            message: "User registered",
+            message: "Registration successful. Welcome To The Dungeon!",
             user: newUser,
             token: `Bearer ${token}`
         })
@@ -32,11 +32,11 @@ router.post("/register", async (req, res) => {
         // if (err.name === "SequelizeUniqueConstriantError")  //may need to use this as the devs ran an update and instance of doesnt work with unique constraint error
         if (err instanceof UniqueConstraintError) {
             res.status(409).json({
-                message: "Email already in use."
+                message: "Oops! Looks like you are already registered! Please login."
             })
         } else {
             res.status(500).json({
-                error: `${err}`
+                message: `Registration failed. Error: ${err}`
             })
         }
     }
@@ -60,22 +60,22 @@ router.post("/login", async (req, res) => {
 
                 res.status(200).json({
                     user: loginUser,
-                    message: "User successfully logged in!",
+                    message: "Welcome Back To The Dungeon!",
                     token: `Bearer ${token}`
                 });
             } else {
                 res.status(401).json({
-                    message: "Incorrect email or password"
+                    message: "Incorrect email or password. Please try again."
                 })
             }
         } else {
             res.status(401).json({
-                message: "Incorrect email or password"
+                message: "Incorrect email or password. Please try again."
             })
         }
     } catch (error) {
         res.status(500).json({
-            message: `${err}`
+            message: `Login failed. Error: ${err}`
         })
     }
 });
