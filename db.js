@@ -1,6 +1,9 @@
 const {Sequelize} = require("sequelize")
 
-const db = new Sequelize(`postgres://postgres:${process.env.PG_PWORD}@localhost:5432/Blue-Project`)
+const db = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    ssl: process.env.ENVIRONMENT === 'production'
+})
 
 module.exports = db
 
